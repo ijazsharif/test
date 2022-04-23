@@ -1,12 +1,16 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:test/ui/crypto_invest_screen.dart';
+import 'package:test/ui/online_willie/checkout_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     DevicePreview(
-      builder: (context) => const MyApp(),
+      enabled: false,
+      builder: (context) => const ProviderScope(child: MyApp()),
     ),
   );
 }
@@ -20,10 +24,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Crypto Analysis',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF3c184d),
+        ),
+        scaffoldBackgroundColor: const Color(0xFF3c184d),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF4A1F5F),
+          foregroundColor: Colors.white,
+          elevation: 0,
+        ),
         textTheme: GoogleFonts.gabrielaTextTheme(),
       ),
-      home: const CryptoInvestScreen(),
+      home: const CheckoutScreen(),
     );
   }
 }
